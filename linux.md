@@ -38,11 +38,13 @@ halt # 关闭系统，等同于shutdown –h now 和 poweroff
 ls /
 ```
 
-你会看到如下图所示：![截屏2020-08-01 下午8.55.31](/Users/pd/Library/Application Support/typora-user-images/截屏2020-08-01 下午8.55.31.png)
+你会看到如下图所示：
+
+![](https://raw.githubusercontent.com/pendd/picture/master/Linux/ls.png)
 
 树状目录结构：（Linux的一切资源都挂载在这个 / 根节点下）
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7LDkhrDl4H9TqZhwyeNSeaNibQYW2xbQIL38lrCCSPEzFKJhCiau0FvQMFSa37NQxTTbbo3PrpjJic5g/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![](https://raw.githubusercontent.com/pendd/picture/master/Linux/structure_tree.png)
 
 **以下是对这些目录的解释：**
 
@@ -401,7 +403,7 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 在Linux中我们可以使用`ll`或者`ls –l`命令来显示一个文件的属性以及文件所属的用户和组，如：
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7JGpeIS4j9q3B4LQhsQkFiauXAQN0qOnVCYvj7Cm1oQbvexVDFqPhUIeTe83BdAHlXCJhGoNabSFKQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/ls.png)
 
 实例中，boot文件的第一个属性用"d"表示。"d"在Linux中代表该文件是一个目录文件。
 
@@ -421,7 +423,7 @@ Linux系统是一种典型的多用户系统，不同的用户处于不同的地
 
 每个文件的属性由左边第一部分的10个字符来确定（如下图）：
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7JGpeIS4j9q3B4LQhsQkFiauEybzG2XIdlOMLyO13lMfPKUWRpGJGgyxCAJ9mics9dTZ1qrWDIvleYQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/file_rwx.png)
 
 从左至右用0-9这些数字来表示。
 
@@ -725,7 +727,7 @@ vim 则可以说是程序开发者的一项很好用的工具。
 
 vim 键盘图：
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7L1I72C1HrwJ9bG6XAbVggM4RsQuEaoMI78gr3jGxkVH7ONWyDHmremOHiaUibc3sqPRfEuVuHqicfqA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/vim_keyboard.png)
 
 > 三种使用模式
 
@@ -778,7 +780,7 @@ vim 键盘图：
 
 简单的说，我们可以将这三个模式想成底下的图标来表示：
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7L1I72C1HrwJ9bG6XAbVggMIxVoDyQ4LWxSbHDjAYfHuId7xfHHichtqZK2ehsXvcC9KiaibPf68s9dg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/vim_model.png)
 
 > 上手体验一下，在home目录下测试
 
@@ -790,7 +792,7 @@ vim 键盘图：
 
 然后就会进入文件
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7L1I72C1HrwJ9bG6XAbVggM4461hqusRbQZ32967zqUhChqXbCzJTN3I20RpiaVbFqWvHicvicc9icBUQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/vim_cmd.png)
 
 **按下 i 进入输入模式(也称为编辑模式)，开始编辑文字**
 
@@ -800,7 +802,7 @@ vim 键盘图：
 
 这个时候，键盘上除了 **Esc** 这个按键之外，其他的按键都可以视作为一般的输入按钮了，所以你可以进行任何的编辑。
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7L1I72C1HrwJ9bG6XAbVggMEarICtkr8ia1N6zqcuv3ROj1TBDoMicM5DoYzaGU29qQ2mbQhlBUbbww/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/vim_esc.png)
 
 **按下 ESC 按钮回到一般模式**
 
@@ -808,7 +810,7 @@ vim 键盘图：
 
 在一般模式中按下 **:wq** 储存后离开 vim！
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7L1I72C1HrwJ9bG6XAbVggMeA5EoVUt4j2544oibjdoeRah06s2ALh1QDXwep41Mj4ZnhWyb6icdp0w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![avatar](https://raw.githubusercontent.com/pendd/picture/master/Linux/vim_wq.png)
 
 OK! 这样我们就成功创建了一个 kuangstudy.txt 的文件。
 
