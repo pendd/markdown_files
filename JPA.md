@@ -21,7 +21,28 @@
 
 强制性增加API版本声明，不要发布无版本的API。如：/api/v1/blog
 
-## 2.CrudRepository
+## 2.JPA
+
+> 什么是JPA？
+
+```TEX
+JPA 是 Java Persistence API 的简称，是JDK5.0注解或XML描述对象-关系表的映射关系，
+并将运行期间的实体对象持久化到数据库中。
+JPA是一种标准，SpringDataJPA是一种实现。
+```
+
+## 3.SpringData
+
+> 什么是SpringData？
+
+```tex
+SpringData是Spring的一个子项目，支持各种数据库的访问技术，包含关系型和非关系型数据库。
+SpringData本身又包括多个模块，其中一个模块SpringData-JPA就是针对JPA的一种封装实现。
+```
+
+
+
+## 4.CrudRepository
 
 ![avatar](https://raw.githubusercontent.com/pendd/picture/master/JPA/crudRepository.png)
 
@@ -139,7 +160,7 @@ public class PersonRepositoryTest {
 
 ```
 
-## 3.PagingAndSortingRepository
+## 5.PagingAndSortingRepository
 
 ```java
 @Data
