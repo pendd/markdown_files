@@ -40,9 +40,27 @@ SpringData是Spring的一个子项目，支持各种数据库的访问技术，�
 SpringData本身又包括多个模块，其中一个模块SpringData-JPA就是针对JPA的一种封装实现。
 ```
 
+## 4.SpringBoot集成JPA
+
+```YML
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+```
+
+> 启动类上加上@EnableJpaRepositories
+
+```java
+//repositoryBaseClass = BaseRepository.class
+// 指定自定义baseRepository类
+@EnableJpaRepositories(basePackages = "com.pd.jpa.repository") 
+```
 
 
-## 4.CrudRepository
+
+## 5.CrudRepository
 
 ![avatar](https://raw.githubusercontent.com/pendd/picture/master/JPA/crudRepository.png)
 
@@ -160,7 +178,7 @@ public class PersonRepositoryTest {
 
 ```
 
-## 5.PagingAndSortingRepository
+## 6.PagingAndSortingRepository
 
 ```java
 @Data
@@ -253,5 +271,141 @@ public interface PagingAndSortingRepository<T, ID> extends CrudRepository<T, ID>
 	 */
 	Page<T> findAll(Pageable pageable);
 }
+```
+
+## 7.Query
+
+> Emp
+
+```java
+@Table
+@Entity(name = "Emp")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Emp {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
+    private String name;
+
+    @Column
+    private Integer age;
+
+}
+```
+
+```java
+@NoRepositoryBean //告诉JPA不要创建对应接口的bean对象
+public interface BaseRepository<T, ID> extends Repository<T, ID> {
+
+    Optional<T> findById(ID id);
+
+    <S extends T> S save(S entity);
+}
+```
+
+```java
+public class BaseRepositoryImpl implements BaseRepository {
+    @Override
+    public Optional findById(Object o) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Object save(Object entity) {
+        return null;
+    }
+
+}
+```
+
+```java
+public interface EmpRepository extends BaseRepository<Emp, Integer> {
+    List<Emp> findByNameAndAge(String name, Integer age);
+
+    List<Emp> findDistinctEmpByName(String name);
+
+    // 不分页的话传入 Pageable.unpaged()
+    Page<Emp> findByName(String name, Pageable pageable);
+
+    // Page 和 Slice 区别：
+    // Page 继承自 Slice
+    // Page 每次查询都会返回总数，所以对于查询数据量大的情况下效率不高 count + query
+    // Slice 查询不返回总数
+    Slice<Emp> findEmpByName(String name, Pageable pageable);
+
+    // 不排序的话传入 Sort.unsorted()
+    List<Emp> findByName(String name, Sort sort);
+
+    List<Emp> findDistinctEmpByName(String name, Pageable pageable);
+
+    // 这里from 后面的 Emp 对应的是 @Entity 注解里name的值，只是默认和类名一致而已
+    @Query("select e from Emp e where e.name = :name")
+    List<Emp> findByName(String name);
+
+    // #{#entityName} 自动获取 @Entity 注解里name的值
+    // 这种方式注入可以避免@Entity注解中name值得变化照成其他@Query语句中的修改
+    @Query("select e from #{#entityName} e where e.name = ?1")
+    List<Emp> findByNameFromEntityName(String name);
+}
+
+```
+
+```java
+@SpringBootTest
+public class EmpRepositoryTest {
+
+    @Autowired private EmpRepository repository;
+
+    @Test
+    void findByNameAndAge() {
+        System.out.println(repository.findByNameAndAge("lucy", 20));
+    }
+
+    @Test
+    void findDistinctByName() {
+        System.out.println(repository.findDistinctEmpByName("lucy"));
+    }
+
+    @Test
+    void findByName() {
+        Page<Emp> page = repository.findByName("lucy", PageRequest.of(0, 2));
+        System.out.println(page);
+    }
+
+    @Test
+    void findEmpByName() {
+        Slice<Emp> slice = repository.findEmpByName("lucy", PageRequest.of(0, 2));
+        System.out.println(slice);
+    }
+
+    @Test
+    void findByNameSort() {
+        // 多属性多方向排序
+        Sort sort = Sort.by("age").ascending().and(Sort.by("name").descending());
+        List<Emp> list = repository.findByName("lucy", Sort.by(Direction.DESC, "age"));
+        System.out.println(list);
+    }
+
+    @Test
+    void findDistinctEmpByName() {
+        List<Emp> list = repository.findDistinctEmpByName("lucy", PageRequest.of(0, 2));
+        System.out.println(list);
+    }
+
+    @Test
+    void findByNameQuery() {
+        System.out.println(repository.findByName("lucy"));
+    }
+
+    @Test
+    void findByNameFromEntityName() {
+        System.out.println(repository.findByNameFromEntityName("lucy"));
+    }
 ```
 
