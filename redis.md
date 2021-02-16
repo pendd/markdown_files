@@ -42,14 +42,12 @@ Redis6.0 以上版本需要gcc5 以上
    # Redis可执行命令在/usr/local/bin 目录下
    ```
 
-   ![截屏2020-08-04 上午10.54.04](/Users/pd/Desktop/截屏2020-08-04 上午10.54.04.png)
-
    ```bash
-   # 在/usr/local/bin 目录下新建myconfig目录用于copy redis.conf文件
+# 在/usr/local/bin 目录下新建myconfig目录用于copy redis.conf文件
    mkdir myconfig
    cp /opt/redis-6.0.6/redis.conf myconfig
    ```
-
+   
 4. 启动Redis  
 
    ```bash
@@ -74,7 +72,7 @@ Redis6.0 以上版本需要gcc5 以上
 
  redis-benchmark
 
-![benchmark参数](/Users/pd/Library/Application Support/typora-user-images/benchmark参数.png)
+![](https://github.com/pendd/picture/raw/master/Redis/benchmark参数.png)
 
 测试性能：
 
@@ -83,13 +81,13 @@ Redis6.0 以上版本需要gcc5 以上
 redis-benchmark -h localhost p 6379 -c 100 -n 100000
 ```
 
-![benchmark测试](/Users/pd/Library/Application Support/typora-user-images/benchmark测试.png)
+![](https://github.com/pendd/picture/raw/master/Redis/benchmark测试.png)
 
 ### 基础知识
 
 Redis默认有16个数据库
 
-![redis 默认数据库数量](/Users/pd/Library/Application Support/typora-user-images/redis 默认数据库数量.png)
+![](https://github.com/pendd/picture/raw/master/Redis/redis默认数据库数量.png)
 
 默认使用的是第0个
 
@@ -239,7 +237,7 @@ String的使用呢场景：value除了是字符串也可以是数字
 
 ### List(列表)
 
-![redis List图解](/Users/pd/Library/Application Support/typora-user-images/redis List图解.png)
+![redis List图解](https://github.com/pendd/picture/raw/master/Redis/redisList图解.png)
 
 在redis中，可以把list玩成栈、队列、阻塞队列
 
